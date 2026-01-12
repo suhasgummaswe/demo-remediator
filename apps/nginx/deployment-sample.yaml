@@ -18,6 +18,11 @@ spec:
       - name: app-alpha
         image: busybox
         command: ["sleep", "3600"]
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - "ALL"
         volumeMounts:
         - name: host-volume
           mountPath: /host

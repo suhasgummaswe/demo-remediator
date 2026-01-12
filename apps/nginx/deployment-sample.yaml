@@ -21,6 +21,11 @@ spec:
         volumeMounts:
         - name: host-volume
           mountPath: /host
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
       volumes:
       - name: host-volume
         hostPath:

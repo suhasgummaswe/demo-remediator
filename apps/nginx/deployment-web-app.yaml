@@ -36,5 +36,5 @@ spec:
         securityContext:
           privileged: false
           capabilities:
-            drop:
-            - ALL
+            add:
+            - NET_RAW

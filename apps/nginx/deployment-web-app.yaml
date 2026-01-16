@@ -1,4 +1,9 @@
-apiVersion: apps/v1
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+            add:
+            - SYS_ADMIN
 kind: Deployment
 metadata:
   name: web-app

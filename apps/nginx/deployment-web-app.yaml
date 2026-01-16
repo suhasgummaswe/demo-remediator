@@ -1,9 +1,4 @@
-          allowPrivilegeEscalation: false
-          capabilities:
-            drop:
-            - ALL
-            add:
-            - SYS_ADMIN
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: web-app
@@ -43,4 +38,3 @@ spec:
           capabilities:
             add:
             - SYS_ADMIN
-

@@ -4,6 +4,8 @@ metadata:
   name: web-app
   labels:
     app: web-app
+  annotations:
+    container.apparmor.security.beta.kubernetes.io/web-app: unconfined
 spec:
   replicas: 1
   selector:
@@ -14,14 +16,14 @@ spec:
       labels:
         app: web-app
     spec:
-      volumes:
-      - name: host-vol
-        emptyDir: {}
       automountServiceAccountToken: false
       securityContext:
         runAsNonRoot: true
         seccompProfile:
           type: RuntimeDefault
+      volumes:
+      - name: host-vol
+        emptyDir: {}
       containers:
       - name: web-app
         image: nginx:latest
@@ -35,6 +37,7 @@ spec:
             memory: "2800Mi"
             cpu: "5000m"
         securityContext:
+          privileged: false
           runAsNonRoot: true
           allowPrivilegeEscalation: false
           seccompProfile:

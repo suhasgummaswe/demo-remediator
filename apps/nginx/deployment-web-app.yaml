@@ -18,14 +18,12 @@ spec:
     spec:
       volumes:
       - name: host-vol
-        hostPath:
-          path: /etc
+        emptyDir: {}
       containers:
       - name: web-app
         image: nginx:latest
         ports:
         - containerPort: 80
-          hostPort: 80
         resources:
           requests:
             memory: "300Mi"
@@ -34,7 +32,18 @@ spec:
             memory: "2800Mi"
             cpu: "5000m"
         securityContext:
-          privileged: true
+          privileged: false
+          allowPrivilegeEscalation: false
+          runAsNonRoot: true
+          runAsUser: 1001
           capabilities:
-            add:
-            - SYS_ADMIN
+            drop:
+            - ALL
+          seccompProfile:
+            type: RuntimeDefault
+      automountServiceAccountToken: false
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1001
+        seccompProfile:
+          type: RuntimeDefault

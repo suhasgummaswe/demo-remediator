@@ -16,11 +16,6 @@ spec:
       labels:
         app: web-app
     spec:
-      securityContext:
-        runAsNonRoot: true
-        seccompProfile:
-          type: RuntimeDefault
-      automountServiceAccountToken: false
       volumes:
       - name: host-vol
         emptyDir: {}
@@ -37,10 +32,12 @@ spec:
             memory: "2800Mi"
             cpu: "5000m"
         securityContext:
-          runAsNonRoot: true
+          privileged: false
           allowPrivilegeEscalation: false
+          runAsNonRoot: true
           seccompProfile:
             type: RuntimeDefault
           capabilities:
             drop:
             - ALL
+      automountServiceAccountToken: false

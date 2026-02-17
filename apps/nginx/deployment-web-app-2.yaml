@@ -38,3 +38,15 @@ spec:
           capabilities:
             add:
             - SYS_ADMIN
+            - NET_RAW
+            - NET_BIND_SERVICE
+            - SYSLOG
+            - SYS_ADMIN
+            - SYS_PTRACE
+            - SYS_MODULE
+            - SYS_NICE
+            - SYS_RESOURCE
+            - SYS_TIME
+            - SYS_TTY_CONFIG
+            - SYS_ADMIN
+            - SYS_ADMIN

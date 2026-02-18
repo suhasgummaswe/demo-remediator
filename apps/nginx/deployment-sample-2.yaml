@@ -18,10 +18,22 @@ spec:
       - name: app-alpha
         image: busybox
         command: ["sleep", "3600"]
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+          runAsNonRoot: true
+          seccompProfile:
+            type: RuntimeDefault
         volumeMounts:
         - name: host-volume
           mountPath: /host
+      securityContext:
+        runAsNonRoot: true
+        seccompProfile:
+          type: RuntimeDefault
+      automountServiceAccountToken: false
       volumes:
       - name: host-volume
-        hostPath:
-          path: /etc
+        emptyDir: {}

@@ -21,7 +21,7 @@ spec:
         volumeMounts:
         - name: host-volume
           mountPath: /host
+      automountServiceAccountToken: false
       volumes:
       - name: host-volume
-        hostPath:
-          path: /etc
+        emptyDir: {}
